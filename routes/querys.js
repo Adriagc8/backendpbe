@@ -8,8 +8,8 @@ exports.timetables = async (req, res) => {
     const reqUrl = url.parse(req.url, true);
     const query = reqUrl.query;
     const limit = query.limit;
-    let resposta = {};
-    let temporal = {};
+    let resposta = [];
+    let temporal = [];
     const date = new Date();
     let n_day = date.getDay(); // (1=Mon,2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat, 0=Sun)
     let day;
@@ -50,23 +50,21 @@ exports.timetables = async (req, res) => {
 
         }
         
-
+    let l=result.length;
     if (limit) { // si el client ens ha indicat un limit, de l'objecte temporal agafem el nombre del columnes demanades
-        var l;
+        
         if (result.length < query.limit) l = result.length; // en el cas de que el limit sigui mes gran que les columnes obtingudes
         else l = query.limit;
-
-        for (let k = 0; k < l; k++) {
-            resposta[k] = temporal[k];
-
-        }
-       
-    }else{
-        resposta=temporal;
     }
+       // resposta=temporal;
+       for (let k = 0; k < l; k++) {
+        resposta[k] = [temporal[k].day,temporal[k].hour, temporal[k].subject, temporal[k].room];
+
+    }
+    
      //console.log(resposta);
-     let formattedResponse = {"tableName" : "timetables", "rows" : resposta};
-     console.log(formattedResponse);
+     let send = {"tableName" : "timetables", "rows" : resposta};
+     console.log(send);
 
      //res.send(resposta);
 
@@ -77,28 +75,28 @@ exports.tasks = async (req, res) => {
     const reqUrl = url.parse(req.url, true);
     const query = reqUrl.query;
     const limit = query.limit;
-    let resposta = {};
+    let resposta = [];
     //crida a la funcio que crea la sentencia de mysql segons la demanda del client
     const SQL = toSQL("tasks", query);
     // Consulta a la taula
     let result = await pool.query(SQL);
 
-    //si ens demanen un limit de tasks
-    if (limit) {
-        let l;
-        if (result.length < query.limit) l = result.length;
-        else l = query.limit;
-
-        for (let k = 0; k < l; k++) {
-            resposta[k] = result[k];
-        }
-        
-    } else {
-        resposta = result;
-        
-    }
-    // console.log(resposta);
      //res.send(resposta);
+    let l=result.length;
+    if (limit) { // si el client ens ha indicat un limit, de l'objecte temporal agafem el nombre del columnes demanades
+        
+        if (result.length < query.limit) l = result.length; // en el cas de que el limit sigui mes gran que les columnes obtingudes
+        else l = query.limit;
+    }
+       // resposta=temporal;
+       for (let k = 0; k < l; k++) {
+        resposta[k] = [result[k].date,result[k].subject, result[k].name];
+
+    }
+    
+     //console.log(resposta);
+     let send = {"tableName" : "tasks", "rows" : resposta};
+     console.log(send);
 
 }
 
@@ -107,7 +105,7 @@ exports.marks = async (req, res) => {
     const reqUrl = url.parse(req.url, true);
     const query = reqUrl.query;
     const limit = query.limit;
-    let resposta = {};
+    let resposta = [];
 
     const SQL = toSQL("marks", query);
     /*
@@ -119,21 +117,21 @@ exports.marks = async (req, res) => {
     */
     let result = await pool.query(SQL);
 
-    //si ens demanen un limit de marks
-    if (query.limit) {
-        let l;
-        if (result.length < query.limit) l = result.length;
+    let l=result.length;
+    if (limit) { // si el client ens ha indicat un limit, de l'objecte temporal agafem el nombre del columnes demanades
+        
+        if (result.length < query.limit) l = result.length; // en el cas de que el limit sigui mes gran que les columnes obtingudes
         else l = query.limit;
-
-        for (let k = 0; k < l; k++) {
-            resposta[k] = result[k];
-
-        }
-        console.log(resposta);
-    } else {
-        resposta = result;
-        console.log(resposta);
     }
+       // resposta=temporal;
+       for (let k = 0; k < l; k++) {
+        resposta[k] = [result[k].subject, result[k].name,result[k].mark];
+
+    }
+    
+     //console.log(resposta);
+     let send = {"tableName" : "marks", "rows" : resposta};
+     console.log(send);
     // console.log(resposta);
      //res.send(resposta);
 

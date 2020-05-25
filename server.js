@@ -1,5 +1,5 @@
 const hostname = '127.0.0.1';
-const port = 7000;
+const port = 5902;
 const { sessionManager } = require('./lib/sessions');
 const server = require('./routes/controller');
 const { database } = require('./database/keys');

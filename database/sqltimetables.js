@@ -12,19 +12,19 @@ con.connect(function (err) {
   console.log("Connected!");
   var sql = "INSERT INTO timetables (day, hour,subject, room) VALUES ?";
   var values = [
-    ['Mon', '08:00:00', 'Lab DSBM', 'C3S102'],
-    ['Mon', '10:00:00', 'PSAVC', 'A4201'],
-    ['Tue', '12:00:00', 'Lab RP', 'A4201'],
-    ['Tue', '08:00:00', 'RP', 'A4105'],
-    ['Tue', '10:00:00', 'TD', 'A4101'],
-    ['Tue', '13:00:00', 'DSBM', 'A4201'],
-    ['Wen', '08:00:00', 'Lab PBE', 'A4201'],
-    ['Thu', '08:00:00', 'PBE', 'A4101'],
-    ['Thu', '10:00:00', 'PSAVC', 'A4201'],
-    ['Thu', '12:00:00', 'TD', 'A4101'],
-    ['Fri', '08:00:00', 'DSBM','A4201'],
-    ['Fri', '10:00:00', 'RP', 'A4105'],
-    ['Fri', '12:00:00', 'PSAVC', 'A4201']
+    ['Mon', '08:00', 'Lab DSBM', 'C3S102'],
+    ['Mon', '10:00', 'PSAVC', 'A4201'],
+    ['Tue', '12:00', 'Lab RP', 'A4201'],
+    ['Tue', '08:00', 'RP', 'A4105'],
+    ['Tue', '10:00', 'TD', 'A4101'],
+    ['Tue', '13:00', 'DSBM', 'A4201'],
+    ['Wen', '08:00', 'Lab PBE', 'A4201'],
+    ['Thu', '08:00', 'PBE', 'A4101'],
+    ['Thu', '10:00', 'PSAVC', 'A4201'],
+    ['Thu', '12:00', 'TD', 'A4101'],
+    ['Fri', '08:00', 'DSBM','A4201'],
+    ['Fri', '10:00', 'RP', 'A4105'],
+    ['Fri', '12:00', 'PSAVC', 'A4201']
   ];
   con.query(sql, [values], function (err, result) {
     if (err) throw err;
