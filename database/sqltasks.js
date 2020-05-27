@@ -1,11 +1,6 @@
 var mysql = require('mysql');
 
-var con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '314159',
-    database: 'database_pbe'
-});
+var con=mysql.createConnection(database);
 
 con.connect(function (err) {
     if (err) throw err;

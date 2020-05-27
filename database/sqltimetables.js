@@ -1,11 +1,6 @@
 var mysql = require('mysql');
 
-var con = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '314159',
-  database: 'database_pbe'
-});
+var con=mysql.createConnection(database);
 
 con.connect(function (err) {
   if (err) throw err;
@@ -14,7 +9,7 @@ con.connect(function (err) {
   var values = [
     ['Mon', '08:00', 'Lab DSBM', 'C3S102'],
     ['Mon', '10:00', 'PSAVC', 'A4201'],
-    ['Tue', '12:00', 'Lab RP', 'A4201'],
+    ['Mon', '12:00', 'Lab RP', 'A4201'],
     ['Tue', '08:00', 'RP', 'A4105'],
     ['Tue', '10:00', 'TD', 'A4101'],
     ['Tue', '13:00', 'DSBM', 'A4201'],
