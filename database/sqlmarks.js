@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-
+const { database } = require('./keys');
 var con=mysql.createConnection(database);
 
 con.connect(function (err) {
@@ -7,7 +7,14 @@ con.connect(function (err) {
     console.log("Connected!");
     var sql = "INSERT INTO marks (subject, name, mark,student) VALUES ?";
     var values = [
-
+      ['DSBM', 'control teoria', '7.5', 'Estudiant Prova'],
+      ['PBE', 'entrega final', '8', 'Estudiant Prova'],
+      ['PBE', 'CDR', '9.8', 'Estudiant Prova'],
+      ['PBE', 'examen final', '10', 'Estudiant Prova'],
+      ['PSAVC', 'parcial', '7', 'Estudiant Prova'],
+      ['RP', 'control 5', '4.9', 'Estudiant Prova'],
+      ['TD', 'parcial', '2', 'Estudiant Prova'],
+/*
         ['DSBM', 'control teoria', '7.5', 'Marc Bosch'],
         ['PBE', 'entrega final', '8', 'Marc Bosch'],
         ['PBE', 'CDR', '9.8', 'Marc Bosch'],
@@ -62,7 +69,7 @@ con.connect(function (err) {
         ['PBE', 'examen final', '4', 'Josep Cotrina'],
         ['PBE', 'parcial', '1', 'Josep Cotrina'],
         ['RP', 'control 5', '5.4', 'Josep Cotrina'],
-        ['TD', 'parcial', '5.1', 'Josep Cotrina']
+        ['TD', 'parcial', '5.1', 'Josep Cotrina']*/
     ];
     con.query(sql, [values], function (err, result) {
         if (err) throw err;

@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-
+const { database } = require('./keys');
 var con=mysql.createConnection(database);
 
 con.connect(function (err) {
